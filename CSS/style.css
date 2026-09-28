@@ -278,6 +278,8 @@ section:not(:last-of-type)::before {
     justify-content: space-between;
     gap: 48px;
     width: 100%;
+    max-width: 100%;
+    min-width: 0;
 }
 
 .main .text-content {
@@ -285,6 +287,9 @@ section:not(:last-of-type)::before {
     flex-direction: column;
     gap: 14px;
     flex: 1.25;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
 }
 
 /* Availability Badge */
@@ -320,6 +325,7 @@ section:not(:last-of-type)::before {
     color: var(--text-white);
     line-height: 1.2;
     letter-spacing: -0.5px;
+    overflow-wrap: break-word;
 }
 
 .hero-name {
@@ -349,15 +355,16 @@ section:not(:last-of-type)::before {
     font-size: 1.05rem;
 }
 
-/* Hero Role (Single-Line) */
+/* Hero Role */
 .hero-role {
     font-size: clamp(1.2rem, 2.5vw, 1.85rem);
     font-weight: 800;
     color: var(--text-white);
-    line-height: 1.3;
+    line-height: 1.35;
     letter-spacing: 0.3px;
     margin-top: 2px;
-    white-space: nowrap;
+    white-space: normal;
+    overflow-wrap: break-word;
 }
 
 .hero-role span {
@@ -371,6 +378,8 @@ section:not(:last-of-type)::before {
     font-size: 1.02rem;
     line-height: 1.75;
     max-width: 600px;
+    width: 100%;
+    overflow-wrap: break-word;
 }
 
 .hero-bio strong {
@@ -378,13 +387,14 @@ section:not(:last-of-type)::before {
     font-weight: 600;
 }
 
-/* Highlight Chips (Single-Line Layout) */
+/* Highlight Chips (Flexible Wrapping Layout) */
 .hero-highlights {
     display: flex;
     align-items: center;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     gap: 8px;
     margin-top: 4px;
+    max-width: 100%;
 }
 
 .highlight-chip {
@@ -400,7 +410,6 @@ section:not(:last-of-type)::before {
     border-radius: 9px;
     transition: var(--transition);
     white-space: nowrap;
-    flex-shrink: 0;
 }
 
 .highlight-chip i {
@@ -1077,10 +1086,15 @@ section:not(:last-of-type)::before {
         flex-direction: column-reverse;
         text-align: center;
         gap: 30px;
+        width: 100%;
+        max-width: 100%;
     }
 
     .main .text-content {
         align-items: center;
+        text-align: center;
+        width: 100%;
+        max-width: 100%;
     }
 
     .hero-badge,
@@ -1089,8 +1103,19 @@ section:not(:last-of-type)::before {
         align-items: center;
     }
 
+    .hero-role {
+        white-space: normal;
+    }
+
+    .hero-bio {
+        margin: 0 auto;
+        text-align: center;
+    }
+
     .hero-highlights {
         justify-content: center;
+        flex-wrap: wrap;
+        width: 100%;
     }
 
     .hero-actions {
@@ -1109,6 +1134,14 @@ section:not(:last-of-type)::before {
 }
 
 @media (max-width: 768px) {
+    header {
+        padding: 14px 6%;
+    }
+
+    section {
+        padding: 70px 5%;
+    }
+
     .menu-btn {
         display: flex;
     }
@@ -1147,6 +1180,37 @@ section:not(:last-of-type)::before {
         width: 100%;
     }
 
+    /* Hero Section Responsive */
+    .main {
+        min-height: auto;
+        padding-top: 100px;
+        padding-bottom: 60px;
+    }
+
+    .hero-title {
+        font-size: clamp(1.85rem, 5.5vw, 2.3rem);
+    }
+
+    .hero-role {
+        font-size: clamp(1.2rem, 3.8vw, 1.55rem);
+        white-space: normal;
+        line-height: 1.35;
+    }
+
+    .hero-bio {
+        font-size: 0.96rem;
+        line-height: 1.65;
+    }
+
+    .hero-highlights {
+        gap: 8px;
+    }
+
+    .highlight-chip {
+        font-size: 0.8rem;
+        padding: 5px 11px;
+    }
+
     .project-card {
         width: 100%;
     }
@@ -1181,5 +1245,100 @@ section:not(:last-of-type)::before {
     .footer {
         flex-direction: column;
         text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        padding: 12px 4%;
+    }
+
+    .logo {
+        font-size: 1.3rem;
+    }
+
+    section {
+        padding: 55px 4%;
+    }
+
+    .main {
+        padding-top: 85px;
+        padding-bottom: 45px;
+    }
+
+    .main>div {
+        gap: 22px;
+    }
+
+    .hero-badge {
+        font-size: 0.78rem;
+        padding: 5px 11px;
+    }
+
+    .hero-title {
+        font-size: 1.65rem;
+        line-height: 1.25;
+    }
+
+    .hero-role {
+        font-size: 1.15rem;
+        line-height: 1.35;
+        white-space: normal;
+    }
+
+    .hero-bio {
+        font-size: 0.88rem;
+        line-height: 1.6;
+    }
+
+    .hero-highlights {
+        gap: 6px;
+        justify-content: center;
+    }
+
+    .highlight-chip {
+        font-size: 0.76rem;
+        padding: 5px 9px;
+        gap: 5px;
+    }
+
+    .hero-cta-title {
+        font-size: 1.25rem;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+    }
+
+    .main-btn,
+    .secondary-btn {
+        width: 100%;
+        max-width: 290px;
+        justify-content: center;
+        padding: 0.72em 1.4em;
+        font-size: 0.95rem;
+    }
+
+    .hero-image-frame {
+        padding: 6px;
+        border-radius: 18px;
+    }
+
+    .hero-image-frame img {
+        width: 165px;
+        max-height: 330px;
+    }
+
+    .social-icons a {
+        width: 38px;
+        height: 38px;
+        font-size: 1.15rem;
+    }
+
+    .title {
+        font-size: 1.6rem;
+        margin-bottom: 28px;
     }
 }
